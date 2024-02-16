@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,9 +38,11 @@ public class CustomerAPI {
 	@PostMapping
 	public ResponseEntity<?> addCustomer(@RequestBody Customer newCustomer, 
 			UriComponentsBuilder uri) {
-	  if (newCustomer.getId()!=0
-	    || newCustomer.getName()==null
-	    || newCustomer.getEmail() == null) { // Reject - we'll assign the customer id
+	  if (newCustomer.getId() != 0
+	    || newCustomer.getName() ==null
+	    || newCustomer.getEmail() == null
+	    || newCustomer.getPassword() == null
+	    ) {
 	    return ResponseEntity.badRequest().build();
 	  }
 	  newCustomer=repo.save(newCustomer);
@@ -52,12 +55,22 @@ public class CustomerAPI {
 	@PutMapping("/{customerId}")
 	public ResponseEntity<?> putCustomer(@RequestBody Customer newCustomer, 
 	    @PathVariable("customerId") long customerId) {
-	  if (newCustomer.getId()!=customerId
-	      || newCustomer.getName()==null
-	      || newCustomer.getEmail() == null) {
+	  if (newCustomer.getId() != customerId
+	      || newCustomer.getName()== null
+	      || newCustomer.getEmail() == null
+	      || newCustomer.getPassword() == null
+	      ) {
 	    return ResponseEntity.badRequest().build();
 	  }
 	  newCustomer=repo.save(newCustomer);
 	  return ResponseEntity.ok().build();
 	}
+	
+	@DeleteMapping("/{customerId}")
+	public Optional<Customer> deleteCustomer(@PathVariable("customerId") long customerId) {
+		Optional<Customer> deletedCustomer = repo.findById(customerId);
+		repo.deleteById(customerId);
+		return (Optional<Customer>) deletedCustomer;
+	}
+	
 }

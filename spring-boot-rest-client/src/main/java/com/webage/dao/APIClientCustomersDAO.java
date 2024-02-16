@@ -15,8 +15,6 @@ public class APIClientCustomersDAO implements CustomersDAO {
 	
 	@Override
 	public Collection<Customer> getAllCustomers() {
-		// Construct a GET request to the CustomersAPI base url
-		// Insert code here..
 		RestTemplate template=new RestTemplate();
 		Customer[] customers=template.getForObject(customersAPIbase, Customer[].class);
 		return Arrays.asList(customers);

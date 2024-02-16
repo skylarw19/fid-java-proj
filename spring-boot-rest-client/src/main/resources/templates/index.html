@@ -1,13 +1,22 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>SportyStuf Purchase Entry System</title>
+  <title>Customer Login</title>
 </head>
 <body>
-  <h1>SportyStuf Purchase Entry System</h1>
+  <h1>Customer Login</h1>
 
-  <b>Main Menu</b>
   <br/>
   <!-- Need URL for link -->
+  <form>
+  	<label for="name">Name</label>
+  	<input id="name"></input>
+  	<label for="password">Password</label>
+  	<input id="password"></input>
+  	<input type="submit" value="Log in">
+  </form>
+  
+  
+  
   <a th:href="@{/browseCustomers}">Browse Customers</a>
 
   <div th:include="footer :: content"></div>

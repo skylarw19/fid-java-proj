@@ -4,19 +4,21 @@
 <title>Browse Purchases - SportyStuf Purchase Entry System</title>
 </head>
 <body>
-	<h1>Browse Purchases</h1>
-	<a href="add">Add Purchase</a>
+	<h1>Browse Customers</h1>
+
 	<table border="1">
 		<tr>
 			<td>Customer Id</td>
 			<td>Customer Name</td>
 			<td>Email</td>
+			<td>Password</td>
 		</tr>
 		<tr th:each="customer : ${customers}">
 			<!-- Other purchase details -->
 			<td th:text="${customer.id}"></td>
 			<td th:text="${customer.name}"></td>
 			<td th:text='${customer.email}'></td>
+			<td th:text='${customer.password}'></td>
 		</tr>
 	</table>
 	<br />
