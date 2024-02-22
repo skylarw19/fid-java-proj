@@ -7,6 +7,31 @@
 
   <br/>
   <!-- Need URL for link -->
+  <h3>Sign Up</h3>
+  <!-- 
+  <form >
+  	<label for="name">Name</label>
+  	<input id="name"></input>
+  	<label for="email">Email</label>
+  	<input type="text" id="email"></input>
+  	<label for="password">Password</label>
+  	<input id="password"></input>
+  	<input type="submit" value="Sign Up">
+  </form>
+  -->
+  
+  <form onsubmit="return false" th:action="@{/customersController}" th:object="${customer}" method="post">
+  	<label for="name">Name</label>
+  	<input type="text" id='name'></input>
+  	<label for="email">Email</label>
+  	<input type="text" id="email"></input>
+  	<label for="password">Password</label>
+  	<input type="text" id="password"></input>
+  	<input type="submit" value="Sign Up">
+  </form>
+  
+
+  <h3>Log in</h3>
   <form>
   	<label for="name">Name</label>
   	<input id="name"></input>
